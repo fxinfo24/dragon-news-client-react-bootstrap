@@ -12,11 +12,11 @@ const Admin = () => {
       {/* Layout responsive grid from React-Bootstrap */}
       <Container>
         <Row>
-          <Col lg={3}>Left Nav
+          <Col lg={3}>
           <LeftNav></LeftNav>
           </Col>
           <Col lg={6}>Main Content</Col>
-          <Col lg={3}>Right Nav
+          <Col lg={3}>
           <RightNav></RightNav>
           </Col>
         </Row>

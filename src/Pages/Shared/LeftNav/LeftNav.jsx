@@ -3,7 +3,7 @@ import React from 'react';
 const LeftNav = () => {
     return (
         <div>
-            <h3>Left Nav</h3>
+            <h4>All Category</h4>
         </div>
     );
 };
