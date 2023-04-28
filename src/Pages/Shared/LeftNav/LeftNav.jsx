@@ -21,11 +21,13 @@ const LeftNav = () => {
         <div>
             <h4>All Category</h4>
             {/* get array data using map function */}
+            <div className='ps-4'>
             {
                 categories.map(category => <p key = {category.id}>
                     <Link>{category.name}</Link>
                 </p>)
             }
+            </div>
         </div>
     );
 };
