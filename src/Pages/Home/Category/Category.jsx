@@ -5,7 +5,7 @@ const Category = () => {
     // Destructure 'id' from route path using useParams
     const {id} = useParams();
 
-    // Step 2:
+    // Step 2: Get/show category wise data
     const categoryNews = useLoaderData();
     return (
         <div>

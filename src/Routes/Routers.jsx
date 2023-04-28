@@ -19,7 +19,7 @@ const routerApp = createBrowserRouter([
                 // Now destructure the 'id' inside Category as useParams
                 element: <Category></Category>,
 
-                // Load data as category wised
+                // Load category wise data from dynamic
                 loader: ({params}) => fetch(`http://localhost:5000/categories/${params.id}`),
             }
         ]
