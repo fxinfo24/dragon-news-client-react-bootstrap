@@ -7,27 +7,31 @@ import News from "../Pages/News/News/News";
 
 const routerApp = createBrowserRouter([
     {
-        path: '/',
+        path: '/', //Step 1:
         element: <Admin></Admin>,
         children: [
             {
-                path: '/',
+                path: '/', //Step 2:
                 element: <Home></Home>
             },
             {
-                path: '/category/:id',
+                path: '/category/:id', //Step 3:
                 // Now destructure the 'id' inside Category as useParams
-                element: <Category></Category>
+                element: <Category></Category>,
+
+                // Load data as category wised
+                loader: ({params}) => fetch(`http://localhost:5000/categories/${params.id}`),
             }
         ]
     },
+    // Step 4:
     // For new layout (named 'NewsLayout'), using another route
     {
-        path: '/news',
+        path: '/news', //Step 4.1:
         element: <NewsLayout></NewsLayout>,
         children: [
             {
-                path: '/news/:id',
+                path: '/news/:id', //Step 4.2:
                 element: <News></News>
             }
         ]
