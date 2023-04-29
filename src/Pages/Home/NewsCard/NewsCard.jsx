@@ -33,11 +33,11 @@ const NewsCard = ({ singleCategory }) => {
           <Card.Img variant="top" src={image_url} />
           <Card.Text>
             {/* Show only partial of news */}
-            {details.length < 230 ? (
+            {details.length < 203 ? (
               <>{details}</>
             ) : (
               <>
-                {details.slice(0, 230)} <br />
+                {details.slice(0, 203)} <br />
                 <Link className="text-decoration-none" to={`/news/${_id}`}>
                   Read More
                 </Link>
