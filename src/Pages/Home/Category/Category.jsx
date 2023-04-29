@@ -16,9 +16,9 @@ const Category = () => {
             <h4>This category {id} has {categoryNews.length} news</h4>
             {/* As we've to go to News-card for each news, do map the 'categoryNews' array and send 'singleNews' as props.*/}
             {
-                categoryNews.map(singleNews => <NewsCard
-                key={singleNews._id}
-                singleNews= {singleNews}
+                categoryNews.map(singleCategory => <NewsCard
+                key={singleCategory._id}
+                singleCategory= {singleCategory}
                 ></NewsCard>)
             }
         </div>

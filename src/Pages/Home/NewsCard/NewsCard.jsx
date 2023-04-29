@@ -5,11 +5,11 @@ import { FaEye, FaRegBookmark, FaRegStar, FaShareAlt, FaStar } from "react-icons
 import Rating from "react-rating";
 import { Link } from "react-router-dom";
 
-const NewsCard = ({ singleNews }) => {
-  console.log(singleNews);
+const NewsCard = ({ singleCategory }) => {
+  console.log(singleCategory);
   // Destructuring the 'singleNews' object
   const { _id, author, image_url, title, details, rating, total_view } =
-    singleNews;
+  singleCategory;
 
   return (
     <div>
@@ -48,7 +48,7 @@ const NewsCard = ({ singleNews }) => {
         <Card.Footer className="text-muted d-flex">
           <div className="flex-grow-1">
             <Rating
-              placeholderRating={3.5}
+              placeholderRating={rating.number}
               emptySymbol={
                 <FaRegStar></FaRegStar>
               }
@@ -59,6 +59,7 @@ const NewsCard = ({ singleNews }) => {
                 <FaStar></FaStar>
               }
             />
+            {rating.number}
           </div>
           <div>
             <FaEye></FaEye>
