@@ -6,7 +6,7 @@ import Rating from "react-rating";
 import { Link } from "react-router-dom";
 
 const NewsCard = ({ singleCategory }) => {
-  console.log(singleCategory);
+  // console.log(singleCategory);
   // Destructuring the 'singleNews' object
   const { _id, author, image_url, title, details, rating, total_view } =
   singleCategory;
