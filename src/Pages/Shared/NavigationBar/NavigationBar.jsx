@@ -1,9 +1,13 @@
-import React from 'react';
-import { Nav, Navbar } from 'react-bootstrap';
+import React, { useContext } from 'react';
+import { Button, Container, Nav, Navbar } from 'react-bootstrap';
 import { FaUserCircle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../ContextProvider/AuthProvider';
+
 
 const NavigationBar = () => {
+
+    const { user } = useContext(AuthContext);
     return (
         <Container>
             {/* Navbar from react-bootstrap */}
@@ -14,7 +18,7 @@ const NavigationBar = () => {
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className="mx-auto">
-                <Nav.Link href="/">Home</Nav.Link>
+                <Link className='text-decoration-none mt-2' to="/">Home</Link>
                 <Nav.Link href="#about">About</Nav.Link>
                 <Nav.Link href="#career">Career</Nav.Link>
                 {/* <NavDropdown title="Dropdown" id="collapsible-nav-dropdown">
@@ -34,15 +38,17 @@ const NavigationBar = () => {
                 {/* Conditional: If user logged in, show profile */}
               <Nav>
                 {user && 
-                  <Nav.Link href="#profile">
+                  
                     <FaUserCircle style={{ fontSize: "41px" }}></FaUserCircle>
-                  </Nav.Link>
+                 
                 }
 
                
                 {/* Conditional: If logged in; Show log Out and so */}
-                  {user ?<Button variant="secondary">Log Out</Button> :
-                  <Link to = '/login'><Button variant="secondary">Login</Button></Link>}
+                  {user ?
+                  <Button variant="secondary">Log Out</Button> :
+                  <Link to = '/login'><Button variant="secondary">Login</Button></Link>
+                  }
                 
               </Nav>
             </Navbar.Collapse>
