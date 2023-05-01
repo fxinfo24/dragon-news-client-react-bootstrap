@@ -4,17 +4,38 @@ import Home from "../Pages/Home/Home/Home";
 import Category from "../Pages/Home/Category/Category";
 import NewsLayout from "../Layout/NewsLayout";
 import News from "../Pages/News/News/News";
+import LoginLayout from "../Layout/LoginLayout";
+import LoginForm from "../Pages/Users/Login/LoginForm";
+import RegistrationForm from "../Pages/Users/Registration/RegistrationForm";
 
 const routerApp = createBrowserRouter([
     {
-        path: '/', //Step 1:
-        element: <Admin></Admin>,
+        path: '/',
+        element: <LoginLayout></LoginLayout>,
         children: [
             {
-                path: '/', //Step 2:
-                element: <Home></Home>,
-                // element: <Navigate to = '/category/0'></Navigate>
+                path: '/',
+                element: <Navigate to = '/category/0'></Navigate>
             },
+            {
+                path: '/login',
+                element: <LoginForm></LoginForm>,
+            },
+            {
+                path: '/register',
+                element: <RegistrationForm></RegistrationForm>
+            },
+        ]
+    },
+    {
+        path: '/category', //Step 1:
+        element: <Admin></Admin>,
+        children: [
+            // {
+            //     path: '/', //Step 2:
+            //     element: <Category></Category>,
+            //     // element: <Navigate to = '/category/0'></Navigate>
+            // },
             {
                 path: '/category/:id', //Step 3:
                 // Now destructure the 'id' inside Category as useParams
@@ -22,7 +43,7 @@ const routerApp = createBrowserRouter([
 
                 // Load category wise data from dynamic
                 loader: ({params}) => fetch(`http://localhost:5000/categories/${params.id}`),
-            }
+            },
         ]
     },
     // Step 4:

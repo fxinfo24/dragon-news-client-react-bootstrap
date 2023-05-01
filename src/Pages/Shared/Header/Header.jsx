@@ -25,9 +25,9 @@ const Header = () => {
         {/* Button from React-bootstrap */}
         <Button variant="danger">Latest</Button>{" "}
         {/* Install Marquee from 'react-fast-marquee' */}
-        <Marquee>
+        <Marquee className="text-white" speed = {150}>
           I can be a React component, multiple React components, or just some
-          text. : {user.displayName}
+          {/* text. : {user.displayName} */}
         </Marquee>
       </div>
       {/* Navbar from react-bootstrap */}
