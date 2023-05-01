@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { Container, Form, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../ContextProvider/AuthProvider";
 
 function LoginForm() {
@@ -8,6 +8,9 @@ function LoginForm() {
   const [password, setPassword] = useState("");
 
   const { logInUser } = useContext(AuthContext)
+
+//   Send user to specific route after successfully login
+const Navigate = useNavigate();
   
 
   const handleLogin = (event) => {
@@ -23,7 +26,8 @@ function LoginForm() {
     logInUser(email, password)
     .then(result => {
         const loggedInUser = result.user;
-        console.log(logInUser);
+        console.log(loggedInUser);
+        Navigate('/category/1')
       })
       .catch(err => {
         console.log(err);
