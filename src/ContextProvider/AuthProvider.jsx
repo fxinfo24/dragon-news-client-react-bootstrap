@@ -41,11 +41,15 @@ const createUser = (email,password) => {
         return signOut(auth);
     };
 
-    // Step 7.1: Unsubscribe useEffect
+    // Step 7.1: Unsubscribe useEffect: If user logged in or not
     useEffect( () => {
         const unsubscribe = onAuthStateChanged(auth, (loggedUser) => {
             console.log('Logged in user inside auth state observer', loggedUser)
+            setUser(loggedUser);
         });
+        return () => {
+         unsubscribe();
+        }
     } , [])
   // Step 3: Create Auth context object for Provider values
   const AuthInfo = {

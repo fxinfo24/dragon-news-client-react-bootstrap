@@ -5,7 +5,16 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../../ContextProvider/AuthProvider";
 
 const NavigationBar = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOutUser } = useContext(AuthContext);
+  const handleLogout = () => {
+    logOutUser()
+    .then()
+    .catch((error) => {
+        console.log(error);
+    });
+  };
+
+  
   return (
     <Container>
       {/* Navbar from react-bootstrap */}
@@ -31,7 +40,7 @@ const NavigationBar = () => {
 
                 {/* Conditional: If logged in; Show log Out and so */}
                 {user ? (
-                  <Button variant="secondary">Log Out</Button>
+                  <Button onClick={handleLogout} variant="secondary">Log Out</Button>
                 ) : (
                   <Link to="/login">
                     <Button variant="secondary">Login</Button>
