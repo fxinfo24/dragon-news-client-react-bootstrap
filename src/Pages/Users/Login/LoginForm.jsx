@@ -1,24 +1,39 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Container, Form, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../../../ContextProvider/AuthProvider";
 
 function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (event) => {
+  const { logInUser } = useContext(AuthContext)
+  
+
+  const handleLogin = (event) => {
     event.preventDefault();
-    // handle form submission
 
     // Optional:
     // const form = event.target;
     // const email = form.email.value;
     // const password = form.password.value;
-    // console.log(email, password);
+    console.log(email, password);
+
+    // Handle form submission logic here
+    logInUser(email, password)
+    .then(result => {
+        const loggedInUser = result.user;
+        console.log(logInUser);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+
   };
 
   return (
-    <Container>
-      <Form onSubmit={handleSubmit}>
+    <Container className="w-25 mx-auto">
+      <Form onSubmit={handleLogin}>
         <Form.Group controlId="email">
           <Form.Label>Email address</Form.Label>
           <Form.Control
@@ -44,6 +59,13 @@ function LoginForm() {
         <Button variant="primary" type="submit">
           Login
         </Button>
+
+        <br />
+        <Form.Text className="text-secondary">
+          Don't Have an Account? <Link to="/register">Register</Link>
+        </Form.Text>
+        <Form.Text className="text-success"></Form.Text>
+        <Form.Text className="text-danger"></Form.Text>
       </Form>
     </Container>
   );

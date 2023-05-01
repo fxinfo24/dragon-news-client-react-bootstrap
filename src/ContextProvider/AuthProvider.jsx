@@ -1,12 +1,13 @@
 import React, { createContext, useEffect, useState } from "react";
 import firebaseApp from "../Firebase/firebase.config";
 import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { auth } from "../Firebase/firebase.config";
 
 // Step 1: Create a context and export it for using from anywhere
 export const AuthContext = createContext(null);
 
 // Step 4: Create an auth as Firebase documentation
-const auth = getAuth(firebaseApp);
+// const auth = getAuth(firebaseApp); 
 
 // Step 2: Set 'children' object and use it inside AuthContext.Provider
 const AuthProvider = ({ children }) => {

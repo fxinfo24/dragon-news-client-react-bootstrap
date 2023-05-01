@@ -1,6 +1,8 @@
 import React, { useContext, useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Container } from 'react-bootstrap';
 import { AuthContext } from '../../../ContextProvider/AuthProvider';
+import { Link } from 'react-router-dom';
+import { clear } from 'localforage';
 
 const RegistrationForm = () => {
     const { createUser } = useContext(AuthContext);
@@ -16,13 +18,14 @@ const RegistrationForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const form = event.target;
-    const name = form.name.value;
-    const email = form.email.value;
-    const photo = form.photoURL.value;
-    const password = form.pass.value;
-    const confirmPass = form.confirmPass.value;
-    console.log(name, email, password, confirmPass);
+    // Optional
+    // const form = event.target;
+    // const name = form.userName.value;
+    // const email = form.email.value;
+    // const photo = form.photoURL.value;
+    // const password = form.pass.value;
+    // const confirmPass = form.confirmPass.value;
+    console.log(name, email, password, /*confirmPass*/);
 
 
     // Regex for password validation
@@ -36,11 +39,20 @@ const RegistrationForm = () => {
       return;
     }
     // Handle form submission logic here
+    createUser(email, password)
+    .then(result => {
+        const createdUser = result.user;
+        console.log(createdUser);
+    })
+    .catch(err => {
+        console.log(err);
+    });
     console.log('Form submitted successfully!');
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Container className='w-25 mx-auto'>
+        <Form onSubmit={handleSubmit}>
       <Form.Group controlId="formName">
         <Form.Label>Name</Form.Label>
         <Form.Control
@@ -49,6 +61,7 @@ const RegistrationForm = () => {
           placeholder="Enter name"
           value={name}
           onChange={(event) => setName(event.target.value)}
+          required
         />
       </Form.Group>
 
@@ -71,6 +84,7 @@ const RegistrationForm = () => {
           placeholder="Enter email"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
+          required
         />
       </Form.Group>
 
@@ -82,6 +96,7 @@ const RegistrationForm = () => {
           placeholder="Enter password"
           value={password}
           onChange={(event) => setPassword(event.target.value)}
+          required
         />
       </Form.Group>
 
@@ -93,6 +108,7 @@ const RegistrationForm = () => {
           placeholder="Confirm password"
           value={confirmPassword}
           onChange={(event) => setConfirmPassword(event.target.value)}
+          required
         />
       </Form.Group>
 
@@ -110,7 +126,19 @@ const RegistrationForm = () => {
       <Button variant="primary" type="submit">
         Register
       </Button>
+
+      <br />
+                <Form.Text className="text-secondary">
+                    Already Have an Account? <Link to="/login">Login</Link>
+                </Form.Text>
+                <Form.Text className="text-success">
+
+                </Form.Text>
+                <Form.Text className="text-danger">
+
+                </Form.Text>
     </Form>
+    </Container>
   );
 };
 
