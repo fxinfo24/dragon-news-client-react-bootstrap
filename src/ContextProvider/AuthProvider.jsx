@@ -46,6 +46,7 @@ const createUser = (email,password) => {
         const unsubscribe = onAuthStateChanged(auth, (loggedUser) => {
             console.log('Logged in user inside auth state observer', loggedUser)
             setUser(loggedUser);
+            setLoader(false);
         });
         return () => {
          unsubscribe();

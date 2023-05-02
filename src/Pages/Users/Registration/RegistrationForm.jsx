@@ -2,7 +2,6 @@ import React, { useContext, useState } from 'react';
 import { Form, Button, Container } from 'react-bootstrap';
 import { AuthContext } from '../../../ContextProvider/AuthProvider';
 import { Link } from 'react-router-dom';
-import { clear } from 'localforage';
 
 const RegistrationForm = () => {
     const { createUser } = useContext(AuthContext);
@@ -49,6 +48,13 @@ const RegistrationForm = () => {
     });
     console.log('Form submitted successfully!');
   };
+
+  // Handle terms of service check box
+  const [accept, setAccept] = useState(false)
+  const handleCheckTerms = (event) =>{
+    console.log(event.target.checked);
+    setAccept(event.target.checked);
+  }
 
   return (
     <Container className='w-25 mx-auto'>
@@ -114,16 +120,20 @@ const RegistrationForm = () => {
 
       <Form.Group controlId="acceptTerms">
         <Form.Check
+          onClick={handleCheckTerms}
           type="checkbox"
           name='acceptTerms'
-          label="Accept Terms & Conditions"
+          label= {<>Accept <Link to = '/terms'>Terms & Conditions</Link></>}
           checked={acceptTerms}
           onChange={(event) => setAcceptTerms(event.target.checked)}
           required
         />
       </Form.Group>
 
-      <Button variant="primary" type="submit">
+      <Button 
+      disabled = {!accept}
+      variant="primary" 
+      type="submit">
         Register
       </Button>
 
