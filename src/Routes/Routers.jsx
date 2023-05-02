@@ -48,7 +48,7 @@ const routerApp = createBrowserRouter([
                 element: <Category></Category>,
 
                 // Load category wise data from dynamic
-                loader: ({params}) => fetch(`http://localhost:5000/categories/${params.id}`),
+                loader: ({params}) => fetch(`https://dragon-news-server-ten-ecru.vercel.app/categories/${params.id}`),
             },
         ]
     },
@@ -61,7 +61,7 @@ const routerApp = createBrowserRouter([
             {
                 path: '/news/:id', //Step 4.2:
                 element: <PrivateRoute><News></News></PrivateRoute>,
-                loader: ({params}) => fetch(`http://localhost:5000/news/${params.id}`),
+                loader: ({params}) => fetch(`https://dragon-news-server-ten-ecru.vercel.app/news/${params.id}`),
             }
         ]
     }
