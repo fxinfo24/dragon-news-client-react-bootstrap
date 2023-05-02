@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { Container, Form, Button } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../ContextProvider/AuthProvider";
 
 function LoginForm() {
@@ -11,6 +11,10 @@ function LoginForm() {
 
 //   Send user to specific route after successfully login
 const Navigate = useNavigate();
+
+
+const location = useLocation();
+console.log('Login page location', location);
   
 
   const handleLogin = (event) => {
