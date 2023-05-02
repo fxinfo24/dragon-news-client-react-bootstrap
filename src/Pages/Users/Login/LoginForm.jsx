@@ -12,10 +12,10 @@ function LoginForm() {
 //   Send user to specific route after successfully login
 const Navigate = useNavigate();
 
-
 const location = useLocation();
 console.log('Login page location', location);
-  
+
+const from = location.state?.from?.pathname || '/category/0';
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -31,7 +31,8 @@ console.log('Login page location', location);
     .then(result => {
         const loggedInUser = result.user;
         console.log(loggedInUser);
-        Navigate('/category/1')
+        // Navigate('/category/1') 
+        Navigate(from, {replace: true}); // After Ln 18
       })
       .catch(err => {
         console.log(err);
