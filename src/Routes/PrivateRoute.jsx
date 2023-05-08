@@ -26,7 +26,7 @@ export default PrivateRoute;
  * ------------------
  *          STEPS
  * -------------------
- * 1. Check user is logged in or not
+ * 1. Check user is logged in or not (onAuthStateChanged in AuthProvider).
  * 2. If user is logged in, then allow them to visit the route
  * 3. Else redirect the user to the login page
  * 4. Setup the private router 
