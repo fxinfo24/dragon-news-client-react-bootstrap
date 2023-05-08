@@ -1,8 +1,10 @@
 import React from 'react';
 import { useLoaderData, useParams } from 'react-router-dom';
 import NewsCard from '../NewsCard/NewsCard';
+import UseTitle from '../../../Hooks/UseTitle';
 
 const Category = () => {
+   
     // Destructure 'id' from route path using useParams
     const {id} = useParams();
 
@@ -10,6 +12,7 @@ const Category = () => {
     const categoryNews = useLoaderData();
     console.log(categoryNews);
 
+    UseTitle('Category');
 
     return (
         <div>

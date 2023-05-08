@@ -2,20 +2,21 @@ import { useContext, useState } from "react";
 import { Container, Form, Button } from "react-bootstrap";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../ContextProvider/AuthProvider";
+import UseTitle from "../../../Hooks/UseTitle";
 
 function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { logInUser } = useContext(AuthContext)
+  const { logInUser } = useContext(AuthContext);
 
-//   Send user to specific route after successfully login
-const Navigate = useNavigate();
+  //   Send user to specific route after successfully login
+  const Navigate = useNavigate();
 
-const location = useLocation();
-console.log('Login page location', location);
+  const location = useLocation();
+  console.log("Login page location", location);
 
-const from = location.state?.from?.pathname || '/category/0';
+  const from = location.state?.from?.pathname || "/category/0";
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -28,17 +29,18 @@ const from = location.state?.from?.pathname || '/category/0';
 
     // Handle form submission logic here
     logInUser(email, password)
-    .then(result => {
+      .then((result) => {
         const loggedInUser = result.user;
         console.log(loggedInUser);
-        // Navigate('/category/1') 
-        Navigate(from, {replace: true}); // After Ln 18
+        // Navigate('/category/1')
+        Navigate(from, { replace: true }); // After Ln 18
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
-
   };
+
+  UseTitle("Login");
 
   return (
     <Container className="w-25 mx-auto">
